@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="src/load.css">
+    <title>CARGA DE DATOS</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="text-center">CARGA DE DATOS</h1>
+        
+        <div class="row">
+            <div class="col-4 text-center">
+                <input class="form-control" type="file" id="data-file">
+            </div>
+            <div class="col-4 d-grid gap-1">
+                <button class="btn btn-block btn-success" type="button" onclick="exportMySQL();">Exportar a MySQL</button>
+            </div>
+            <div class="col-4 d-grid gap-1">
+                <button class="btn btn-block btn-success" type="button" onclick="exportSQLite();">Exportar a SQLite</button>
+            </div>
+        </div>
+
+        <hr>
+
+        <div id="data-container" style="display: none;">
+            <div class="row">
+                <div class="col-3 text-center">
+                    Elementos por pagina:
+                </div>
+                <div class="col-3 text-center">
+                    <select class="form-select" id="select-rows" onchange="resetForValue();">
+                        <option value="10" selected>10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                        <option value="250">250</option>
+                        <option value="500">500</option>
+                    </select>
+                </div>
+                <div class="col-3 text-center">
+                    <button class="btn btn-primary" type="button" onclick="loadPreviousPage();">Anterior</button>
+                </div>
+                <div class="col-3 text-center">
+                    <button class="btn btn-primary" type="button" onclick="loadNextPage();">Siguiente</button>
+                </div>
+            </div>
+
+            <br>
+            
+            <div class="row">
+                <div class="col-12" style="height: 500px; overflow-y: scroll;">
+                    <table class="table">
+                        <thead class="table-dark" id="data-head">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Apellido</th>
+                                <th scope="col">Nacionalidad</th>
+                                <th scope="col">Fecha Contrato</th>
+                                <th scope="col">Sexo</th>
+                            </tr>
+                        </thead>
+                        <tbody id="data-body"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="w-modal" id="loading_modal">
+        <div class="input-container">
+            <img class="img-loading" src="img/loading.gif" alt="CARGANDO ...">
+        </div>
+    </div>
+
+    <div class="w-modal" id="w-modal" onclick="HideModal();">
+        <div class="w-modal-content">
+            <div class="input-container">
+                <h3 id="modal_title">Title</h3>
+            </div>
+            <div class="input-container">
+                <p id="modal_messg">Message</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="w-modal" id="w-modal-export">
+        <div class="w-modal-content" style="width: 90%; height: 90%;">
+            <br>
+            <div class="row">
+                <div class="col-6 text-center">
+                    <button class="btn btn-primary" type="button" onclick="copyToClipboard();">COPIAR</button>
+                </div>
+                <div class="col-6 text-center">
+                    <button class="btn btn-primary" type="button" onclick="HideModalExport();">CERRAR</button>
+                </div>
+            </div>
+            <hr>
+            <textarea id="text-export" style="width: 100%; height: 80%;"></textarea>
+        </div>
+    </div>
+
+    <script src="js/bootstrap.min.js"></script>
+    <script src="src/load.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/xlsx.full.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/jszip.js"></script>
+    <script src="src/load_data.js"></script>
+    <script src="src/exports.js"></script>
+</body>
+</html>
