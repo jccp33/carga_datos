@@ -1,0 +1,27 @@
+.w-modal{
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-color: rgba(51,51,51,0.7);
+    z-index: 10;
+    text-align: center;
+}
+
+.w-modal-content{
+	cursor: pointer;
+    width: 280px;
+    background-color: white;
+    opacity: 1;
+    margin: 0 auto;
+    margin-top: 25px;
+    border-radius: 3px;
+    padding: 5px;
+}
+
+.img-loading{
+    margin-top: 100px;
+	width: 100px;
+}
